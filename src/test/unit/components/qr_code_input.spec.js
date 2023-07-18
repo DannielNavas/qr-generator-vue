@@ -1,6 +1,6 @@
 import QRCodeInput from "@/components/QRCodeInput.vue";
 import { shallowMount } from "@vue/test-utils";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, test, vi } from "vitest";
 import { createStore } from "vuex";
 
 describe('QRCodeInput.vue', () => {
@@ -50,5 +50,35 @@ describe('QRCodeInput.vue', () => {
   // para realizar una accion se usa el trigger igual del find del wrapper ejem: component.trigger('click')
 
   // para validar constantes se usa el component.vm.variable ejem: component.vm.qrCode
+
+
+  it('spyon', async () => {
+    // Ya no se usa jest sino vitest
+    const spy = vi.spyOn(QRCodeInput.methods, 'sendQRCode');
+    const wrapper = shallowMount(QRCodeInput);
+
+    const component = wrapper.find('#btn-generate');
+    component.trigger('click');
+
+    expect(spy).toHaveBeenCalled();
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
+
+  test('spyon', async () => {
+
+    // const sendQRCodeMock = vi.fn()
+
+    // const wrapper = shallowMount(QRCodeInput, {
+    //   methods: {
+    //     sendQRCode: sendQRCodeMock
+    //   }
+    // });
+
+    // const component = wrapper.find('#btn-generate');
+    // component.trigger('click');
+
+    // expect(sendQRCodeMock).toHaveBeenCalled();
+    // expect(sendQRCodeMock).toHaveBeenCalledTimes(1);
+  });
 
 });
