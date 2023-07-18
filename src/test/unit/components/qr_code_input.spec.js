@@ -33,6 +33,16 @@ describe('QRCodeInput.vue', () => {
       const component = wrapper.find('#btn-generate');
       expect(component.text()).toContain('Generar QR');
     });
+
+    it('render txt input, change its value and see if stored', () => {
+      // TODO: wrapper nos ayuda a interactual con el componente tanto html y sus propiedades
+      const component = wrapper.find('#txt-qr-code');
+      expect(component.element.value).toContain('');
+
+      component.setValue('https://danniel.dev');
+
+      expect(component.element.value).toContain('https://danniel.dev')
+    });
   });
 
 });

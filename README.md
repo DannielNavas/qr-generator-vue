@@ -43,3 +43,6 @@ npm run lint
 El mount no se debe utilizar por performance
 
 es mejor utilizar el shallowMount
+
+Wrapper
+https://v1.test-utils.vuejs.org/api/wrapper/#properties
