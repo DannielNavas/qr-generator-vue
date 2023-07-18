@@ -45,4 +45,10 @@ describe('QRCodeInput.vue', () => {
     });
   });
 
+  // para porbar metodos asincronos se deja el async en el it ejem: it('', async () => { })
+
+  // para realizar una accion se usa el trigger igual del find del wrapper ejem: component.trigger('click')
+
+  // para validar constantes se usa el component.vm.variable ejem: component.vm.qrCode
+
 });
