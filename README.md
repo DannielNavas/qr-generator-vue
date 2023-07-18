@@ -39,3 +39,7 @@ npm run test:unit
 ```sh
 npm run lint
 ```
+
+El mount no se debe utilizar por performance
+
+es mejor utilizar el shallowMount
