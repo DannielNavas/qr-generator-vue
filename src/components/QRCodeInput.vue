@@ -5,6 +5,7 @@
       id="btn-generate"
       class="bg-indigo-600 m-4 p-2 rounded-md text-white text-sm"
       v-on:click="sendQRCode()"
+      :disabled="qrCodeInput === ''"
     >
       Generar QR
     </button>

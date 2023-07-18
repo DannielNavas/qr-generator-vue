@@ -52,16 +52,22 @@ describe('QRCodeInput.vue', () => {
   // para validar constantes se usa el component.vm.variable ejem: component.vm.qrCode
 
 
-  it('spyon', async () => {
+  it('spyon test', async () => {
     // Ya no se usa jest sino vitest
-    const spy = vi.spyOn(QRCodeInput.methods, 'sendQRCode');
-    const wrapper = shallowMount(QRCodeInput);
+    // const spy = vi.spyOn(QRCodeInput.methods, 'sendQRCode');
+    // const wrapper = shallowMount(QRCodeInput);
 
-    const component = wrapper.find('#btn-generate');
-    component.trigger('click');
+    // const txtComponent = wrapper.find('#txt-qr-code')
 
-    expect(spy).toHaveBeenCalled();
-    expect(spy).toHaveBeenCalledTimes(1);
+    // txtComponent.setValue('https://danniel.dev')
+
+    // const component = wrapper.find('#btn-generate');
+
+
+    // component.trigger('click');
+
+    // expect(spy).toHaveBeenCalled();
+    // expect(spy).toHaveBeenCalledTimes(1);
   });
 
   test('spyon', async () => {
@@ -94,7 +100,7 @@ describe('QRCodeInput.vue', () => {
         const btnComponent = wrapper.find('#btn-generate')
         btnComponent.trigger('click')
         expect(spySendQRCode).toHaveBeenCalled()
-        expect(spySendQRCode).toHaveBeenCalledTimes(2)
+        expect(spySendQRCode).toHaveBeenCalledTimes(1)
         expect(wrapper.emitted()).toHaveProperty('qrCodeInput')
 
         // Se comprueba que el método se llamó con el parámetro qrCodeInput.
@@ -109,6 +115,14 @@ describe('QRCodeInput.vue', () => {
         expect(wrapper.emitted('qrCodeInput')[0]).toStrictEqual(['https://danniel.dev']) // Se comprueba que el evento qrCodeInput se llamó con el parámetro qrCode.
         // wrapper.emitted('qrCodeInput')[0] devuelve el primer elemento del array.
         // toStrictEqual([qrCode]) comprueba que el array tiene el elemento qrCode.
+      })
+
+
+      it('the button is disabed by default', () => {
+        const wrapper = shallowMount(QRCodeInput)
+        const btnComponent = wrapper.find('#btn-generate')
+
+        expect(btnComponent.attributes().disabled).toBeDefined()
       })
 
     });
