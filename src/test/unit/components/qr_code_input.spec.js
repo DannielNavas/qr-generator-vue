@@ -81,4 +81,37 @@ describe('QRCodeInput.vue', () => {
     // expect(sendQRCodeMock).toHaveBeenCalledTimes(1);
   });
 
+  describe('actions and mocks', () => {
+    describe('trigger lick in qr code buton and the event it is caled', () => {
+      const spySendQRCode = vi.spyOn(QRCodeInput.methods, 'sendQRCode')
+      const wrapper = shallowMount(QRCodeInput)
+
+      const txtComponent = wrapper.find('#txt-qr-code')
+
+      txtComponent.setValue('https://danniel.dev')
+
+      it('the send qr code function it is begin called', async () => {
+        const btnComponent = wrapper.find('#btn-generate')
+        btnComponent.trigger('click')
+        expect(spySendQRCode).toHaveBeenCalled()
+        expect(spySendQRCode).toHaveBeenCalledTimes(2)
+        expect(wrapper.emitted()).toHaveProperty('qrCodeInput')
+
+        // Se comprueba que el método se llamó con el parámetro qrCodeInput.
+        // wrapper.emitted() devuelve un objeto con los eventos que se dispararon en el componente.
+        // toHaveProperty('qrCodeInput') comprueba que el objeto tiene la propiedad qrCodeInput.
+
+        expect(wrapper.emitted('qrCodeInput')).toHaveLength(1)
+        // Se comprueba que el evento qrCodeInput se llamó una vez.
+        // wrapper.emitted('qrCodeInput') devuelve un array con los parámetros que se le pasaron al evento qrCodeInput.
+        // toHaveLength(n) comprueba que el array tiene n elementos.
+
+        expect(wrapper.emitted('qrCodeInput')[0]).toStrictEqual(['https://danniel.dev']) // Se comprueba que el evento qrCodeInput se llamó con el parámetro qrCode.
+        // wrapper.emitted('qrCodeInput')[0] devuelve el primer elemento del array.
+        // toStrictEqual([qrCode]) comprueba que el array tiene el elemento qrCode.
+      })
+
+    });
+  })
+
 });
