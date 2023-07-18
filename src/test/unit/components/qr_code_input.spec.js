@@ -29,7 +29,10 @@ describe('QRCodeInput.vue', () => {
       }
     })
 
-    it('', () => { });
+    it('renders generate qr code button with text', () => {
+      const component = wrapper.find('#btn-generate');
+      expect(component.text()).toContain('Generar QR');
+    });
   });
 
 });
